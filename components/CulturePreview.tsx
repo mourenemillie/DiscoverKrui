@@ -31,7 +31,7 @@ export default function CulturePreview() {
               <div className="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
               <Music className="w-10 h-10 relative z-10 group-hover:text-dark transition-colors duration-500" />
             </div>
-            <h3 className="text-2xl font-bold font-heading mb-3 text-secondary">Tari Cangget</h3>
+            <h3 className="text-2xl font-bold font-heading mb-3 text-secondary">Tari Nyambai</h3>
             <p className="text-light/70 max-w-xs">
               Sacred dance of the Saibatin people, performed during significant customary ceremonies.
             </p>
