@@ -33,7 +33,7 @@ export default function CulturePreview() {
             </div>
             <h3 className="text-2xl font-bold font-heading mb-3 text-secondary">Tari Cangget</h3>
             <p className="text-light/70 max-w-xs">
-              Sacred dance of the Pepadun people, performed during significant customary ceremonies.
+              Sacred dance of the Saibatin people, performed during significant customary ceremonies.
             </p>
           </div>
 

@@ -94,7 +94,7 @@ export default function GuideProfile({ params }: { params: { id: string } }) {
               <p className="text-dark/80 text-lg leading-relaxed mb-6">
                 {isAhmad 
                   ? "Halo! I'm Ahmad. Born and raised in Krui, I've been surfing Tanjung Setia since I was 10. I know exactly when and where the waves are firing based on the tide and wind. If you're a beginner, I can teach you the basics. I also love taking guests to hidden beaches that only locals know about."
-                  : "Welcome to Krui! I belong to the Pepadun community and am passionate about preserving our Tapis weaving heritage. I'd love to share our ancient traditions and authentic cuisine with you."}
+                  : "Welcome to Krui! I belong to the Saibatin community and am passionate about preserving our Tapis weaving heritage. I'd love to share our ancient traditions and authentic cuisine with you."}
               </p>
               
               <div className="grid sm:grid-cols-2 gap-4 mt-8">
