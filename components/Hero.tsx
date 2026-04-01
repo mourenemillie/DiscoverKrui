@@ -1,9 +1,30 @@
 "use client";
 import { Search, Calendar, Users, MapPin, ChevronDown } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Hero() {
+  const router = useRouter();
+  const { t } = useLanguage();
+  const [searchParams, setSearchParams] = useState({
+    location: "",
+    date: "",
+    guests: "1"
+  });
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const query = new URLSearchParams({
+      location: searchParams.location,
+      date: searchParams.date,
+      guests: searchParams.guests,
+    }).toString();
+    router.push(`/packages?${query}`);
+  };
+
   return (
-    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden pt-20">
+    <section className="relative min-h-[100dvh] w-full flex flex-col items-center justify-center overflow-hidden pt-32 pb-32 lg:pb-16">
       {/* Background Image */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
@@ -15,49 +36,60 @@ export default function Hero() {
 
       <div className="container relative z-20 mx-auto px-6 lg:px-12 text-center text-light mt-10">
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-6 drop-shadow-lg text-balance animate-fade-in-up">
-          Find What Others Miss.
+          {t("heroTitle")}
         </h1>
         <p className="text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto mb-12 drop-shadow-md text-light/90 font-medium">
-          Krui, West Lampung — Indonesia's best-kept secret. Surf world-class waves, explore hidden beaches, and immerse in authentic Lampung culture with local guides.
+          {t("heroSubtitle")}
         </p>
 
         {/* Search Bar */}
-        <div className="bg-light p-3 md:p-4 rounded-full max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-4 shadow-2xl">
-          <div className="flex-1 flex items-center gap-3 px-4 border-b md:border-b-0 md:border-r border-dark/10 pb-3 md:pb-0 w-full">
-            <MapPin className="text-primary w-5 h-5 flex-shrink-0" />
+        <form onSubmit={handleSearch} className="bg-light p-6 lg:p-4 rounded-2xl lg:rounded-full w-full max-w-4xl mx-auto flex flex-col lg:flex-row items-center gap-4 shadow-2xl relative z-30">
+          <div className="flex-1 flex items-center gap-4 px-2 lg:px-4 border-b lg:border-b-0 lg:border-r border-dark/10 pb-4 lg:pb-0 w-full pt-2 lg:pt-0">
+            <MapPin className="text-primary w-6 h-6 flex-shrink-0" />
             <input 
               type="text" 
-              placeholder="Where do you want to go?" 
-              className="bg-transparent border-none outline-none text-dark w-full placeholder:text-dark/50 font-medium"
+              placeholder={t("heroWhere")} 
+              value={searchParams.location}
+              onChange={(e) => setSearchParams({...searchParams, location: e.target.value})}
+              className="bg-transparent border-none outline-none text-dark w-full placeholder:text-dark/50 text-lg font-medium"
             />
           </div>
-          <div className="flex-1 flex items-center gap-3 px-4 border-b md:border-b-0 md:border-r border-dark/10 pb-3 md:pb-0 w-full">
-            <Calendar className="text-primary w-5 h-5 flex-shrink-0" />
+          <div className="flex-1 flex items-center gap-4 px-2 lg:px-4 border-b lg:border-b-0 lg:border-r border-dark/10 pb-4 lg:pb-0 w-full pt-4 lg:pt-0">
+            <Calendar className="text-primary w-6 h-6 flex-shrink-0" />
             <input 
-              type="text" 
+              type="date" 
               placeholder="Dates" 
-              className="bg-transparent border-none outline-none text-dark w-full placeholder:text-dark/50 font-medium"
+              value={searchParams.date}
+              onChange={(e) => setSearchParams({...searchParams, date: e.target.value})}
+              className="bg-transparent border-none outline-none text-dark w-full placeholder:text-dark/50 text-lg font-medium cursor-pointer"
+              style={{ colorScheme: 'light' }}
             />
           </div>
-          <div className="flex-1 flex items-center gap-3 px-4 pb-3 md:pb-0 w-full">
-            <Users className="text-primary w-5 h-5 flex-shrink-0" />
-            <select className="bg-transparent border-none outline-none text-dark w-full appearance-none font-medium cursor-pointer">
-              <option value="1">1 Person</option>
-              <option value="2">2 People</option>
-              <option value="3">3 People</option>
-              <option value="4+">4+ People</option>
+          <div className="flex-1 flex items-center gap-4 px-2 lg:px-4 pb-4 lg:pb-0 w-full pt-4 lg:pt-0">
+            <Users className="text-primary w-6 h-6 flex-shrink-0" />
+            <select 
+              value={searchParams.guests}
+              onChange={(e) => setSearchParams({...searchParams, guests: e.target.value})}
+              className="bg-transparent border-none outline-none text-dark w-full appearance-none text-lg font-medium cursor-pointer"
+            >
+              <option value="1">1 {t("heroPerson")}</option>
+              <option value="2">2 {t("heroPeople")}</option>
+              <option value="3">3 {t("heroPeople")}</option>
+              <option value="4+">4+ {t("heroPeople")}</option>
             </select>
           </div>
-          <button className="bg-accent text-light w-full md:w-auto px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-accent/50 hover:-translate-y-1 transition-all flex items-center justify-center gap-2">
-            <Search className="w-5 h-5" /> Explore
+          <button type="submit" className="bg-accent text-light w-full lg:w-auto px-8 py-4 rounded-xl lg:rounded-full font-bold shadow-lg hover:shadow-accent/50 hover:-translate-y-1 transition-all flex items-center justify-center gap-2 mt-4 lg:mt-0 text-lg">
+            <Search className="w-5 h-5" /> {t("heroExplore")}
           </button>
-        </div>
+        </form>
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 animate-bounce">
-        <span className="text-light/80 text-sm font-medium tracking-widest uppercase">Scroll Down</span>
-        <ChevronDown className="text-light w-6 h-6" />
+      <div className="mt-20 lg:mt-0 w-full lg:absolute lg:bottom-12 lg:left-0 lg:right-0 z-20 flex justify-center pointer-events-none">
+        <div className="flex flex-col items-center gap-2 animate-bounce pointer-events-auto">
+          <span className="text-light/80 text-sm font-medium tracking-wide uppercase whitespace-nowrap">{t("heroScroll")}</span>
+          <ChevronDown className="text-light w-6 h-6" />
+        </div>
       </div>
     </section>
   );

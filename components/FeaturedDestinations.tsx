@@ -1,66 +1,70 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { Star, MapPin, ArrowRight } from "lucide-react";
-
-const destinations = [
-  {
-    name: "Pantai Tanjung Setia",
-    category: "Surfing",
-    rating: 4.9,
-    image: "/images/pantai_tanjung_setia.jpg",
-    color: "bg-primary",
-  },
-  {
-    name: "Pulau Pisang",
-    category: "Snorkeling",
-    rating: 4.8,
-    image: "/images/diving_in_pulau_pisan.jpg",
-    color: "bg-accent",
-  },
-  {
-    name: "Bukit Selalau",
-    category: "Panorama",
-    rating: 4.7,
-    image: "/images/bukit_selalau.jpg",
-    color: "bg-gold",
-  },
-  {
-    name: "Desa Wisata Bumi Lebu",
-    category: "Culture",
-    rating: 4.8,
-    image: "/images/desa.jpg",
-    color: "bg-secondary text-dark",
-  },
-  {
-    name: "Pantai Walur",
-    category: "Family",
-    rating: 4.6,
-    image: "/images/family.jpg",
-    color: "bg-primary",
-  },
-  {
-    name: "Labuhan Jukung",
-    category: "Diving",
-    rating: 4.7,
-    image: "/images/surfing.jpg",
-    color: "bg-accent",
-  },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function FeaturedDestinations() {
+  const { t } = useLanguage();
+
+  const destinations = [
+    {
+      name: "Pantai Tanjung Setia",
+      category: t("catSurfing"),
+      rating: 4.9,
+      image: "/images/pantai_tanjung_setia.jpg",
+      color: "bg-primary",
+    },
+    {
+      name: "Pulau Pisang",
+      category: t("catSnorkeling"),
+      rating: 4.8,
+      image: "/images/diving_in_pulau_pisan.jpg",
+      color: "bg-accent",
+    },
+    {
+      name: "Bukit Selalau",
+      category: t("catPanorama"),
+      rating: 4.7,
+      image: "/images/bukit_selalau.jpg",
+      color: "bg-gold",
+    },
+    {
+      name: "Desa Wisata Bumi Lebu",
+      category: t("catCulture"),
+      rating: 4.8,
+      image: "/images/desa.jpg",
+      color: "bg-secondary text-dark",
+    },
+    {
+      name: "Pantai Walur",
+      category: t("catFamily"),
+      rating: 4.6,
+      image: "/images/family.jpg",
+      color: "bg-primary",
+    },
+    {
+      name: "Labuhan Jukung",
+      category: t("catDiving"),
+      rating: 4.7,
+      image: "/images/surfing.jpg",
+      color: "bg-accent",
+    },
+  ];
+
   return (
     <section className="py-24 bg-white">
       <div className="container mx-auto px-6 lg:px-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-dark mb-4">Top Destinations in Krui</h2>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-dark mb-4">{t("destTitle")}</h2>
             <div className="w-24 h-1 bg-accent"></div>
             <p className="mt-4 text-dark/70 text-lg max-w-2xl">
-              From world-renowned surf breaks to hidden waterfalls and culturally rich villages, explore the best of what Krui has to offer.
+              {t("destSubtitle")}
             </p>
           </div>
           <Link href="/destinations" className="group flex items-center gap-2 font-medium text-primary hover:text-accent transition-colors">
-            See All Destinations <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            {t("destSeeAll")} <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
 
@@ -92,7 +96,7 @@ export default function FeaturedDestinations() {
                   <MapPin className="w-4 h-4" /> Krui, Pesisir Barat
                 </p>
                 <Link href="/destinations" className="w-full py-3 rounded-full bg-light text-dark font-medium flex items-center justify-center hover:bg-gold hover:text-dark transition-colors opacity-0 group-hover:opacity-100 duration-300 delay-150">
-                  Explore Details
+                  {t("destExplore")}
                 </Link>
               </div>
             </div>

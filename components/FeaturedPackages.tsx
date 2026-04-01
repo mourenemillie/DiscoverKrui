@@ -1,32 +1,36 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { Clock, Map, CheckCircle2, ArrowRight } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function FeaturedPackages() {
+  const { t } = useLanguage();
+
   const packages = [
     {
-      title: "Surfer's Escape",
+      title: t("pkgTitle1"),
       duration: "3D2N",
       price: "1.200.000",
       image: "/images/surfing.jpg",
-      badge: "Best Seller",
-      highlights: ["Tanjung Setia Waves", "Surf Lessons", "Beachfront Stay"],
+      badge: t("pkgBadgeBest"),
+      highlights: [t("pkgHigh1a"), t("pkgHigh1b"), t("pkgHigh1c")],
     },
     {
-      title: "Hidden Gems Explorer",
+      title: t("pkgTitle2"),
       duration: "2D1N",
       price: "850.000",
       image: "/images/pulau_pisang_tourist.jpg",
       badge: "",
-      highlights: ["Way Campang Waterfall", "Secret Beaches", "Local Transport"],
+      highlights: [t("pkgHigh2a"), t("pkgHigh2b"), t("pkgHigh2c")],
     },
     {
-      title: "Culture & Nature",
+      title: t("pkgTitle3"),
       duration: "2D1N",
       price: "950.000",
       image: "/images/tapis_lokal.jpg",
-      badge: "New",
-      highlights: ["Tapis Weaving", "Bumi Lebu Village", "Traditional Dinner"],
+      badge: t("pkgBadgeNew"),
+      highlights: [t("pkgHigh3a"), t("pkgHigh3b"), t("pkgHigh3c")],
     },
   ];
 
@@ -35,14 +39,14 @@ export default function FeaturedPackages() {
       <div className="container mx-auto px-6 lg:px-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">Ready-Made Trip Packages</h2>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">{t("pkgTitle")}</h2>
             <div className="w-24 h-1 bg-gold"></div>
             <p className="mt-4 text-light/70 text-lg max-w-2xl">
-              Don't want the hassle of planning? Choose from our curated itineraries designed by local experts.
+              {t("pkgSubtitle")}
             </p>
           </div>
           <Link href="/packages" className="group flex items-center gap-2 font-medium text-gold hover:text-light transition-colors">
-            View All Packages <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            {t("pkgViewAll")} <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
 
@@ -83,11 +87,11 @@ export default function FeaturedPackages() {
 
                 <div className="flex items-center justify-between mt-auto">
                   <div className="text-dark">
-                    <span className="text-sm font-medium text-dark/50 block">Per Person</span>
+                    <span className="text-sm font-medium text-dark/50 block">{t("pkgPerPerson")}</span>
                     <span className="text-xl font-bold font-heading">Rp {pkg.price}</span>
                   </div>
                   <Link href="/packages" className="px-6 py-3 bg-primary text-light font-bold rounded-full hover:bg-dark transition-colors">
-                    Book Now
+                    {t("pkgBook")}
                   </Link>
                 </div>
               </div>

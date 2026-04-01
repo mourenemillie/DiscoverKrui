@@ -1,12 +1,16 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { Star, MessageCircle, ArrowRight } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function MeetGuides() {
+  const { t } = useLanguage();
+
   const guides = [
     {
       name: "Ahmad",
-      specialty: "Surfing & Beach Guide",
+      specialty: t("guideSpec1"),
       rating: 4.9,
       trips: 127,
       langs: ["ID", "EN"],
@@ -14,7 +18,7 @@ export default function MeetGuides() {
     },
     {
       name: "Ratna",
-      specialty: "Culture & Heritage",
+      specialty: t("guideSpec2"),
       rating: 4.8,
       trips: 89,
       langs: ["ID", "EN"],
@@ -22,7 +26,7 @@ export default function MeetGuides() {
     },
     {
       name: "Budi",
-      specialty: "Nature & Hiking",
+      specialty: t("guideSpec3"),
       rating: 4.7,
       trips: 203,
       langs: ["ID"],
@@ -30,7 +34,7 @@ export default function MeetGuides() {
     },
     {
       name: "Maya",
-      specialty: "Diving & Snorkeling",
+      specialty: t("guideSpec4"),
       rating: 4.9,
       trips: 156,
       langs: ["ID", "EN", "JP"],
@@ -43,11 +47,11 @@ export default function MeetGuides() {
       <div className="container mx-auto px-6 lg:px-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-dark mb-4">Your Krui Experts</h2>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-dark mb-4">{t("guideTitle")}</h2>
             <div className="w-24 h-1 bg-primary"></div>
           </div>
           <Link href="/guides" className="group flex items-center gap-2 font-medium text-dark hover:text-accent transition-colors">
-            See All 50+ Guides <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            {t("guideSeeAll")} <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
 
@@ -71,15 +75,15 @@ export default function MeetGuides() {
 
                 <div className="flex items-center justify-between text-sm text-dark/60 mb-6">
                   <div className="flex items-center gap-1">
-                    <MessageCircle className="w-4 h-4" /> {guide.trips} trips
+                    <MessageCircle className="w-4 h-4" /> {guide.trips} {t("guideTrips")}
                   </div>
                   <div className="font-medium text-dark">
-                    Speaks: {guide.langs.join(", ")}
+                    {t("guideSpeaks")}: {guide.langs.join(", ")}
                   </div>
                 </div>
 
                 <Link href="/guides" className="w-full py-3 rounded-full border-2 border-primary text-primary font-bold flex items-center justify-center hover:bg-primary hover:text-light transition-colors">
-                  View Profile
+                  {t("guideView")}
                 </Link>
               </div>
             </div>

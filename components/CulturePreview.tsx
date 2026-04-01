@@ -1,7 +1,11 @@
+"use client";
 import Link from "next/link";
 import { BookA, Music, PenTool } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function CulturePreview() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative py-24 bg-dark text-light overflow-hidden">
       {/* Subtle Tapis Texture Background Placeholder */}
@@ -11,7 +15,7 @@ export default function CulturePreview() {
       ></div>
 
       <div className="container relative z-10 mx-auto px-6 lg:px-12 text-center">
-        <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4 text-gold">Discover Lampung Culture</h2>
+        <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4 text-gold">{t("culTitle")}</h2>
         <div className="w-24 h-1 bg-accent mx-auto mb-16"></div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto mb-16">
@@ -22,7 +26,7 @@ export default function CulturePreview() {
             </div>
             <h3 className="text-2xl font-bold font-heading mb-3 text-secondary">Aksara Lampung</h3>
             <p className="text-light/70 max-w-xs">
-              Ancient script at risk of extinction. Learn to write your name in traditional Had Lampung.
+              {t("culAksaraDesc")}
             </p>
           </div>
 
@@ -33,7 +37,7 @@ export default function CulturePreview() {
             </div>
             <h3 className="text-2xl font-bold font-heading mb-3 text-secondary">Tari Nyambai</h3>
             <p className="text-light/70 max-w-xs">
-              Sacred dance of the Saibatin people, performed during significant customary ceremonies.
+              {t("culTariDesc")}
             </p>
           </div>
 
@@ -44,13 +48,13 @@ export default function CulturePreview() {
             </div>
             <h3 className="text-2xl font-bold font-heading mb-3 text-secondary">Tenun Tapis</h3>
             <p className="text-light/70 max-w-xs">
-              Gold-threaded weaving passed through generations, representing the pride of Lampung women.
+              {t("culTenunDesc")}
             </p>
           </div>
         </div>
 
         <Link href="/culture" className="inline-block px-8 py-4 rounded-full bg-gold text-dark font-bold hover:bg-light transition-colors shadow-lg hover:shadow-gold/20">
-          Explore Lampung Culture &rarr;
+          {t("culExplore")}
         </Link>
       </div>
     </section>

@@ -2,25 +2,28 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Quote } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function Testimonials() {
+  const { t } = useLanguage();
+
   const reviews = [
     {
       name: "Jake M.",
       country: "🇦🇺",
-      review: "Best surf trip of my life. My local guide knew every secret spot and exact swell timing.",
+      review: t("test1rev"),
       image: "/images/boy.png",
     },
     {
       name: "Sari D.",
       country: "🇮🇩",
-      review: "Tidak nyangka Lampung punya tempat seindah ini. Makanannya enak dan warga lokal sangat ramah. Wajib balik lagi!",
+      review: t("test2rev"),
       image: "/images/avatar_1.jpg",
     },
     {
       name: "Thomas K.",
       country: "🇩🇪",
-      review: "The culture program was unexpectedly moving. Learning to weave Tapis with the village elders was an honor.",
+      review: t("test3rev"),
       image: "/images/traveler.png",
     },
   ];
@@ -28,7 +31,7 @@ export function Testimonials() {
   return (
     <section className="py-24 bg-secondary/20">
       <div className="container mx-auto px-6 lg:px-12 text-center">
-        <h2 className="text-4xl md:text-5xl font-heading font-bold text-dark mb-4">What Travelers Say</h2>
+        <h2 className="text-4xl md:text-5xl font-heading font-bold text-dark mb-4">{t("testTitle")}</h2>
         <div className="w-24 h-1 bg-accent mx-auto mb-16"></div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -57,6 +60,8 @@ export function Testimonials() {
 }
 
 export function CtaGuide() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative py-24 bg-dark overflow-hidden">
       <div 
@@ -67,12 +72,12 @@ export function CtaGuide() {
 
       <div className="container relative z-20 mx-auto px-6 lg:px-12 flex items-center min-h-[40vh]">
         <div className="max-w-2xl text-left">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-light mb-6">Are You From Krui?</h2>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-light mb-6">{t("ctaTitle")}</h2>
           <p className="text-xl text-light/80 mb-10 leading-relaxed">
-            Turn your local knowledge into sustainable income. Follow your passion, meet new friends globally, and join 50+ guides already earning on DiscoverKrui.
+            {t("ctaDesc")}
           </p>
           <Link href="/guides/join" className="inline-block px-10 py-5 bg-accent text-light rounded-full font-bold text-lg shadow-xl hover:-translate-y-1 transition-transform hover:shadow-accent/50">
-            Become a Guide — It's Free
+            {t("ctaBtn")}
           </Link>
         </div>
       </div>

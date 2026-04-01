@@ -3,11 +3,12 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Waves, Menu, X, Globe } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [lang, setLang] = useState("EN");
+  const { lang, toggleLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,11 +19,11 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Destinations", href: "/destinations" },
-    { name: "Trip Packages", href: "/packages" },
-    { name: "Local Guides", href: "/guides" },
-    { name: "Culture", href: "/culture" },
-    { name: "Community", href: "/community" },
+    { name: t("navDestinations"), href: "/destinations" },
+    { name: t("navPackages"), href: "/packages" },
+    { name: t("navGuides"), href: "/guides" },
+    { name: t("navCulture"), href: "/culture" },
+    { name: t("navCommunity"), href: "/community" },
   ];
 
   return (
@@ -43,7 +44,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -60,7 +61,7 @@ export default function Navbar() {
         {/* Desktop Actions */}
         <div className="hidden lg:flex items-center gap-4">
           <button
-            onClick={() => setLang(lang === "EN" ? "ID" : "EN")}
+            onClick={toggleLanguage}
             className={`flex items-center gap-1 text-sm font-medium hover:text-gold transition-colors ${
               isScrolled ? "text-primary" : "text-light"
             }`}
@@ -76,13 +77,13 @@ export default function Navbar() {
                 : "border-light text-light hover:bg-light hover:text-primary"
             }`}
           >
-            Become a Guide
+            {t("navBecomeGuide")}
           </Link>
           <Link
             href="/packages"
             className="px-6 py-2.5 rounded-full bg-accent text-light text-sm font-bold shadow-lg hover:shadow-accent/50 hover:-translate-y-0.5 transition-all"
           >
-            Plan My Trip
+            {t("navPlanTrip")}
           </Link>
         </div>
 
@@ -115,13 +116,13 @@ export default function Navbar() {
               href="/guides/join"
               className="w-full py-3 rounded-full border border-primary text-primary text-center font-medium"
             >
-              Become a Guide
+              {t("navBecomeGuide")}
             </Link>
             <Link
               href="/packages"
               className="w-full py-3 rounded-full bg-accent text-light text-center font-bold"
             >
-              Plan My Trip
+              {t("navPlanTrip")}
             </Link>
           </div>
         </div>

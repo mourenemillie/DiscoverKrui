@@ -1,11 +1,15 @@
+"use client";
 import { Search, ShieldCheck, MapPin } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function HowItWorks() {
+  const { t } = useLanguage();
+
   return (
     <section className="py-24 bg-light overflow-hidden">
       <div className="container mx-auto px-6 lg:px-12 relative">
         <div className="text-center mb-20 relative z-10">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-dark mb-4">Plan Your Krui Trip in 3 Steps</h2>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-dark mb-4">{t("howTitle")}</h2>
           <div className="w-24 h-1 bg-primary mx-auto"></div>
         </div>
 
@@ -19,9 +23,9 @@ export default function HowItWorks() {
               <Search className="w-10 h-10 absolute opacity-30 right-4 bottom-4" />
               1
             </div>
-            <h3 className="text-2xl font-bold font-heading text-dark mb-3">Browse & Choose</h3>
+            <h3 className="text-2xl font-bold font-heading text-dark mb-3">{t("howStep1Title")}</h3>
             <p className="text-dark/70 text-lg max-w-xs mx-auto">
-              Explore our curated list of destinations, hidden gems, and ready-made trip packages.
+              {t("howStep1Desc")}
             </p>
           </div>
 
@@ -31,9 +35,9 @@ export default function HowItWorks() {
               <ShieldCheck className="w-10 h-10 absolute opacity-30 right-4 bottom-4" />
               2
             </div>
-            <h3 className="text-2xl font-bold font-heading text-dark mb-3">Book a Local Guide</h3>
+            <h3 className="text-2xl font-bold font-heading text-dark mb-3">{t("howStep2Title")}</h3>
             <p className="text-dark/70 text-lg max-w-xs mx-auto">
-              Hire a verified local expert who knows the area best and can ensure a safe, authentic experience.
+              {t("howStep2Desc")}
             </p>
           </div>
 
@@ -43,9 +47,9 @@ export default function HowItWorks() {
               <MapPin className="w-10 h-10 absolute opacity-30 right-4 bottom-4" />
               3
             </div>
-            <h3 className="text-2xl font-bold font-heading text-dark mb-3">Discover Krui</h3>
+            <h3 className="text-2xl font-bold font-heading text-dark mb-3">{t("howStep3Title")}</h3>
             <p className="text-dark/70 text-lg max-w-xs mx-auto">
-              Immerse yourself in world-class waves, breathtaking nature, and genuine Lampung hospitality.
+              {t("howStep3Desc")}
             </p>
           </div>
         </div>
